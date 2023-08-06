@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	fmt.Printf("abcd: %t\n", isUnique("abcd"))
@@ -10,11 +13,10 @@ func main() {
 
 func isUnique(str string) bool {
 	m := make(map[string]int)
+	str = strings.ToLower(str)
 	for _, el := range str {
 		_, exist1 := m[string(el)]
-		_, exist2 := m[string(el+32)]
-		_, exist3 := m[string(el-32)]
-		if !exist1 && !exist2 && !exist3 {
+		if !exist1 {
 			m[string(el)] = 1
 		} else {
 			return false
